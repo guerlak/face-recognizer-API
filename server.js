@@ -13,10 +13,8 @@ const DATABASE_URL;;
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : 'postgresql-horizontal-107291',
-      user : 'postgres',
-      password : 'aloha99',
-      database : 'smartbrain'
+      host : process.env.DATABASE_URL,
+      ssl: true
     }
   });
 
