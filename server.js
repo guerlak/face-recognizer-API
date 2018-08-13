@@ -8,7 +8,6 @@ const login = require('./controllers/login')
 const image = require('./controllers/images')
 const profile = require('./controllers/profile')
 
-const DATABASE_URL = process.env.DATABASE_URL;
 
 const knex = require('knex')({
     client: 'pg',
@@ -28,7 +27,7 @@ app.listen(process.env.PORT|| 3001, ()=>{
 })
 
 app.get('/', (req, res)=> {
-    res.json(db.users)
+    res.send("Server working")
 })
 
 app.post('/login',(req, res) => {login.login(req, res, knex, bcrypt)});
