@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.listen(process.env.PORT|| 3001, ()=>{
-    console.log('API server running on port ', DATABASE_URL)
+    console.log(`API server running on port ${process.env.PORT}`)
 })
 
 app.get('/', (req, res)=> {
