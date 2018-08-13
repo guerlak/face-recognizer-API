@@ -8,11 +8,12 @@ const login = require('./controllers/login')
 const image = require('./controllers/images')
 const profile = require('./controllers/profile')
 
+const DATABASE_URL;;
 
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      host : 'postgresql-horizontal-107291',
       user : 'postgres',
       password : 'aloha99',
       database : 'smartbrain'
@@ -27,7 +28,7 @@ app.listen(process.env.PORT|| 3001, ()=>{
 })
 
 app.get('/', (req, res)=> {
-    res.send("Server working")
+    res.send("Server is fine...")
 })
 
 app.post('/login',(req, res) => {login.login(req, res, knex, bcrypt)});
