@@ -8,8 +8,6 @@ const login = require('./controllers/login')
 const image = require('./controllers/images')
 const profile = require('./controllers/profile')
 
-const DATABASE_URL;;
-
 const knex = require('knex')({
     client: 'pg',
     connection: {
