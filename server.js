@@ -38,7 +38,15 @@ app.get('/', (req, res)=> {
 
 
 app.post('/clarifai',(req, res) => {
+
     console.log(req.json())
+
+    const faceUrl = req.json();
+
+    const clarifai = app.models.predict(Clarifai.FACE_DETECT_MODEL, faceUrl.input)
+
+    res.json(clarifai)
+
 });
 
 app.post('/login',(req, res) => {login.login(req, res, knex, bcrypt)});
