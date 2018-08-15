@@ -7,6 +7,15 @@ const register = require('./controllers/register')
 const login = require('./controllers/login')
 const image = require('./controllers/images')
 const profile = require('./controllers/profile')
+const Clarifai = require('clarifai');
+
+const app = new Clarifai.App({
+    apiKey: 'e2090dd0b894438c834ca2d6f3587044'
+});
+
+this.setState({imageUrl: this.state.input})
+
+app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
 
 const knex = require('knex')({
     client: 'pg',
@@ -14,7 +23,7 @@ const knex = require('knex')({
       connectionString: process.env.DATABASE_URL,
       ssl: true
     }
-  });
+});
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -26,6 +35,11 @@ app.listen(process.env.PORT|| 3001, ()=>{
 app.get('/', (req, res)=> {
     res.send("Server is fine...")
 })
+
+
+app.post('/clarifai',(req, res) => {
+    console.log(req.json())
+});
 
 app.post('/login',(req, res) => {login.login(req, res, knex, bcrypt)});
 
