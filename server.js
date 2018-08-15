@@ -13,7 +13,6 @@ const faceDetect = new Clarifai.App({
     apiKey: 'e2090dd0b894438c834ca2d6f3587044'
 });
 
-
 const knex = require('knex')({
     client: 'pg',
     connection: {
