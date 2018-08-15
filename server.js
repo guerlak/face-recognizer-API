@@ -13,9 +13,6 @@ const faceDetect = new Clarifai.App({
     apiKey: 'e2090dd0b894438c834ca2d6f3587044'
 });
 
-this.setState({imageUrl: this.state.input})
-
-faceDetect.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
 
 const knex = require('knex')({
     client: 'pg',
@@ -43,7 +40,7 @@ app.post('/clarifai',(req, res) => {
 
     const faceUrl = req.json();
 
-    const clarifai = app.models.predict(Clarifai.FACE_DETECT_MODEL, faceUrl.input)
+    const clarifai = faceDetect.models.predict(Clarifai.FACE_DETECT_MODEL, faceUrl.input)
 
     res.json(clarifai)
 
